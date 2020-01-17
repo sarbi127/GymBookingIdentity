@@ -5,7 +5,7 @@ namespace GymBookingNC19.Core.ViewModels
 {
     public class IndexViewModel
     {
-        public IEnumerable<GymClass>    GymClasses { get; set; }
+        public IEnumerable<GymClass> GymClasses { get; set; }
         public bool History { get; set; }
     }
 }
