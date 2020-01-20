@@ -35,27 +35,26 @@ namespace GymBookingNC19.Controllers
         [AllowAnonymous]
 
         public async Task<IActionResult> Index(IndexViewModel vm = null)
-
         {
-
             var model = new IndexViewModel();
 
-            if (vm.History)
-
+            if(!User.Identity.IsAuthenticated)
             {
-
-                List<GymClass> gym = await unitOfWork.gymClassesRepository.GetHistoryAsync();
-
-                model = new IndexViewModel { GymClasses = gym };
+                model.GymClasses = await unitOfWork.gymClassesRepository.GetAllAsync();
 
                 return View(model);
 
             }
 
+            if (vm.History)
+            {
+                List<GymClass> gym = await unitOfWork.gymClassesRepository.GetHistoryAsync();
+                model = new IndexViewModel { GymClasses = gym };
+                return View(model);
 
+            }
 
             List<GymClass> gymclasses = await unitOfWork.gymClassesRepository.GetAllWithUsersAsync();
-
             var model2 = new IndexViewModel { GymClasses = gymclasses };
 
             return View(model2);

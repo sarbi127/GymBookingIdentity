@@ -3,6 +3,9 @@
 
 // Write your JavaScript code.
 
+alert(" Welcome! ");
+
+
 $(document).ready(function () {
     $("#history").click(function () {
         $("form").submit();

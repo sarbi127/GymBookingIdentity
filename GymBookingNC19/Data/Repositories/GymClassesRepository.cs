@@ -129,6 +129,14 @@ namespace GymBookingNC19.Data.Repositories
 
         }
 
+
+        public async Task<IEnumerable<GymClass>> GetAllAsync()
+
+        {
+
+            return await _context.GymClasses.ToListAsync();
+
+        }
     }
 
 }

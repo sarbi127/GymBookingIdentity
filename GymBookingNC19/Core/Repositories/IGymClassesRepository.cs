@@ -14,5 +14,6 @@ namespace GymBookingNC19.Data.Repositories
         Task<GymClass> GetWithAttendingMembersAsync(int? id);
         void Remove(GymClass gymClass);
         void Update(GymClass gymClass);
+        Task<IEnumerable<GymClass>> GetAllAsync();
     }
 }
