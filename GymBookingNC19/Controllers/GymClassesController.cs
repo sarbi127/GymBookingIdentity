@@ -41,7 +41,6 @@ namespace GymBookingNC19.Controllers
             if(!User.Identity.IsAuthenticated)
             {
                 model.GymClasses = await unitOfWork.gymClassesRepository.GetAllAsync();
-
                 return View(model);
 
             }
