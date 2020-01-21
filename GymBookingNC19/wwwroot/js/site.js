@@ -3,7 +3,7 @@
 
 // Write your JavaScript code.
 
-alert(" Welcome! ");
+//alert(" Welcome! ");
 
 
 $(document).ready(function () {

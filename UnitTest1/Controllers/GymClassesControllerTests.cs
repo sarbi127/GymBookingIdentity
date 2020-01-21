@@ -11,6 +11,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using UnitTest1.Controllers.Extentions;
 
 namespace UnitTest1
 {
@@ -54,13 +55,12 @@ namespace UnitTest1
         }
 
 
-
-
         [TestMethod]
         public async Task Index_ReturnsViewResult_shouldPass()
         {
             //Arrange
             SetUpUserIsAuthenticated(controller, true);
+            controller.SetUserIsAuthenticated(true);
             var vm = new IndexViewModel { History = false };
 
             //Act
@@ -76,19 +76,17 @@ namespace UnitTest1
         public void Index_ReturnsAllGymClasses()
         {
 
-
             var classes = GetGymClassList();
             var expected = new IndexViewModel { GymClasses = classes };
             
             //var expected = GetGymClassList();
             repository.Setup(g => g.GetAllAsync()).ReturnsAsync(classes);
             var vm = new IndexViewModel { History = false };
-            SetUpUserIsAuthenticated(controller, false);
+            controller.SetUserIsAuthenticated(true);
 
 
 
             var viewResult = controller.Index(vm).Result as ViewResult;
-
             var actual = (IndexViewModel)viewResult.Model;
 
             Assert.AreEqual(expected.GymClasses, actual.GymClasses);
@@ -153,9 +151,6 @@ namespace UnitTest1
 
                 }
             };
-
-
-
         }
     }
 }
